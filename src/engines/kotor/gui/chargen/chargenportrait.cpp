@@ -25,7 +25,7 @@
 #include "src/engines/odyssey/button.h"
 #include "src/engines/odyssey/label.h"
 
-#include "src/engines/kotorbase/gui/chargeninfo.h"
+#include "src/engines/kotor/gui/chargen/chargeninfo.h"
 
 #include "src/engines/kotor/gui/chargen/chargenportrait.h"
 
@@ -33,7 +33,7 @@ namespace Engines {
 
 namespace KotOR {
 
-CharacterGenerationPortraitMenu::CharacterGenerationPortraitMenu(KotORBase::CharacterGenerationInfo &info,
+CharacterGenerationPortraitMenu::CharacterGenerationPortraitMenu(KotOR::CharacterGenerationInfo &info,
                                                                  Console *console) :
 		CharacterGenerationBaseMenu(info, console) {
 

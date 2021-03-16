@@ -42,7 +42,7 @@ namespace Engines {
 
 namespace KotOR {
 
-CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotORBase::CharacterGenerationInfo &info,
+CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotOR::CharacterGenerationInfo &info,
                                                                  Console *console) :
 		CharacterGenerationBaseMenu(info, console) {
 

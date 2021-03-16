@@ -33,7 +33,7 @@ namespace Engines {
 
 namespace KotOR {
 
-CharacterGenerationFeatsMenu::CharacterGenerationFeatsMenu(KotORBase::CharacterGenerationInfo &info,
+CharacterGenerationFeatsMenu::CharacterGenerationFeatsMenu(KotOR::CharacterGenerationInfo &info,
                                                                  Console *console) :
 		CharacterGenerationBaseMenu(info, console) {
 

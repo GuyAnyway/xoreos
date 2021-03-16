@@ -52,7 +52,7 @@ public:
 	 * @param info information about the character
 	 * @param console console to log to
 	 */
-	CharacterGenerationAbilitiesMenu(KotORBase::CharacterGenerationInfo &info,
+	CharacterGenerationAbilitiesMenu(KotOR::CharacterGenerationInfo &info,
 	                            ::Engines::Console *console = 0);
 
 private:
