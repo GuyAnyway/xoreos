@@ -39,7 +39,7 @@ namespace KotOR {
 
 class CharacterGenerationPortraitMenu : public CharacterGenerationBaseMenu {
 public:
-	CharacterGenerationPortraitMenu(KotORBase::CharacterGenerationInfo &chargen,
+	CharacterGenerationPortraitMenu(KotOR::CharacterGenerationInfo &chargen,
 	                                ::Engines::Console *console = 0);
 
 private:

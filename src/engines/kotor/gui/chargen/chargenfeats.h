@@ -35,7 +35,7 @@ namespace KotOR {
 
 class CharacterGenerationFeatsMenu : public CharacterGenerationBaseMenu {
 public:
-	CharacterGenerationFeatsMenu(KotORBase::CharacterGenerationInfo &info,
+	CharacterGenerationFeatsMenu(KotOR::CharacterGenerationInfo &info,
 	                            ::Engines::Console *console = 0);
 
 private:
