@@ -62,6 +62,8 @@ public:
 	void setSkin(Skin);
 	/** Set the face index of the character. */
 	void setFace(uint8_t face);
+	/** Set the abilities of the character. */
+	void setAbilities(const CreatureInfo::Abilities abilities);
 
 protected:
 	Class _class;

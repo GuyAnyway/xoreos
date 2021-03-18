@@ -64,6 +64,10 @@ void CharacterGenerationInfo::setFace(uint8_t face) {
 	_face = face;
 }
 
+void CharacterGenerationInfo::setAbilities(const CreatureInfo::Abilities abilities) {
+	_abilities = abilities;
+}
+
 CharacterGenerationInfo::CharacterGenerationInfo(const CharacterGenerationInfo &info) {
 	_class = info._class;
 	_gender = info._gender;
