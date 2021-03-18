@@ -157,6 +157,22 @@ private:
 	 * the cost sunk below the now available points
 	 */
 	void enablePlusButtons();
+
+	/**
+	 * @brief Enable minus buttons
+	 *
+	 * Enable all minus buttons that became available again
+	 */
+	void enableMinusButtons();
+
+	/**
+	 * @brief Load the recommended ability for the character class
+	 *
+	 * @param ability Abbreviation of ability ("str", "dex", ...)
+	 *
+	 * @return The recommended value for the ability for this class
+	 */
+	int32_t loadAbility(const char* ability);
 };
 
 } // End of namespace KotOR

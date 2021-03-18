@@ -25,6 +25,8 @@
 #include "src/common/strutil.h"
 
 #include "src/aurora/talkman.h"
+#include "src/aurora/2dareg.h"
+#include "src/aurora/2dafile.h"
 
 #include "src/engines/odyssey/button.h"
 #include "src/engines/odyssey/label.h"
@@ -798,16 +800,14 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 	}
 
 	if (widget.getTag() == "BTN_RECOMMENDED") {
-		_remainingSectionsLabel = 0;
+		_remainingSections = 0;
 
-		// FIXME thonse abilities should have been read from the classes.2da during class selection,
-		// but seem to be all 0
-		_strength = _info.getAbilities().strength;
-		_dexterity = _info.getAbilities().dexterity;
-		_constitution = _info.getAbilities().constitution;
-		_wisdom = _info.getAbilities().wisdom;
-		_intelligence = _info.getAbilities().intelligence;
-		_charisma = _info.getAbilities().charisma;
+		_strength = loadAbility("str");
+		_dexterity = loadAbility("dex");
+		_constitution = loadAbility("con");
+		_wisdom = loadAbility("wis");
+		_intelligence = loadAbility("int");
+		_charisma = loadAbility("cha");
 
 		_remainingSectionsLabel->setText(Common::composeString(_remainingSections));
 
@@ -822,6 +822,7 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 		_abilityModLabel->setText("0");
 
 		disablePlusButtons();
+		enableMinusButtons();
 		// TODO reset ability description
 
 		return;
@@ -887,6 +888,55 @@ void CharacterGenerationAbilitiesMenu::enablePlusButtons() {
 		_charismaPlusButton->setInvisible(false);
 		_charismaPlusButton->show();
 	}
+}
+
+void CharacterGenerationAbilitiesMenu::enableMinusButtons() {
+	if (AB_MIN_POINTS < _strength) {
+		_strengthMinusButton->setInvisible(false);
+		_strengthMinusButton->show();
+	}
+	if (AB_MIN_POINTS < _dexterity) {
+		_dexterityMinusButton->setInvisible(false);
+		_dexterityMinusButton->show();
+	}
+	if (AB_MIN_POINTS < _constitution) {
+		_constitutionMinusButton->setInvisible(false);
+		_constitutionMinusButton->show();
+	}
+	if (AB_MIN_POINTS < _wisdom) {
+		_wisdomMinusButton->setInvisible(false);
+		_wisdomMinusButton->show();
+	}
+	if (AB_MIN_POINTS < _intelligence) {
+		_intelligenceMinusButton->setInvisible(false);
+		_intelligenceMinusButton->show();
+	}
+	if (AB_MIN_POINTS < _charisma) {
+		_charismaMinusButton->setInvisible(false);
+		_charismaMinusButton->show();
+	}
+}
+
+int32_t CharacterGenerationAbilitiesMenu::loadAbility(const char* ability) {
+	const Aurora::TwoDAFile &classes = TwoDAReg.get2DA("classes");
+	Common::UString label;
+
+	switch (_info.getClass()) {
+		case KotORBase::kClassSoldier:
+			label = "Soldier";
+			break;
+		case KotORBase::kClassScout:
+			label = "Scout";
+			break;
+		case KotORBase::kClassScoundrel:
+			label = "Scoundrel";
+			break;
+		default:
+			return -1; // FIXME proper error handling
+	}
+	const Aurora::TwoDARow &row = classes.getRow("label", label);
+
+	return row.getInt(ability);
 }
 
 } // End of namespace KotOR
