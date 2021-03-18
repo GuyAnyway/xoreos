@@ -84,7 +84,7 @@ CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotORBase::Ch
 	_dexterityLabel = getLabel("DEX_LBL");
 	_constitutionLabel = getLabel("CON_LBL");
 	_wisdomLabel = getLabel("WIS_LBL");
-	_intelligenceLabel = getLabel("WIS_LBL");
+	_intelligenceLabel = getLabel("INT_LBL");
 	_charismaLabel = getLabel("CHA_LBL");
 
 	_strengthButton = getButton("STR_POINTS_BTN");
@@ -755,7 +755,7 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 		if (_remainingSections <= 0 || _charisma >= AB_MAX_POINTS) {
 			return; // Button should not be clickable in this case
 		}
-		switch (_intelligence) {
+		switch (_charisma) {
 			case 8:
 			case 9:
 			case 10:
