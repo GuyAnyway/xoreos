@@ -300,8 +300,11 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 		return;
 	}
 	if (widget.getTag() == "BTN_ACCEPT") {
+		if (0 != _remainingSections) {
+			// TODO display message
+			return;
+		}
 		// TODO save abilities to character info
-		// TODO check that all points have been spent
 		accept();
 		_returnCode = 1;
 		return;
