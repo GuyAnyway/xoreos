@@ -30,8 +30,9 @@
 #include "src/engines/odyssey/label.h"
 #include "src/engines/odyssey/listbox.h"
 
-#include "src/engines/kotor/gui/chargen/chargeninfo.h"
+#include "src/engines/kotorbase/creatureinfo.h"
 
+#include "src/engines/kotor/gui/chargen/chargeninfo.h"
 #include "src/engines/kotor/gui/chargen/chargenabilities.h"
 
 #define AB_MIN_POINTS  8 // TODO what is the correct value? read from files?
@@ -298,8 +299,14 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 		return;
 	}
 	if (widget.getTag() == "BTN_ACCEPT") {
-		// TODO save abilities to character info
 		// TODO check that all points have been spent
+		_info.setAbilities(KotORBase::CreatureInfo::Abilities {
+				.strength = _strength,
+				.dexterity = _dexterity,
+				.constitution = _constitution,
+				.intelligence = _intelligence,
+				.wisdom = _wisdom,
+				.charisma = _charisma});
 		accept();
 		_returnCode = 1;
 		return;
