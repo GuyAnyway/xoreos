@@ -65,19 +65,20 @@ CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotORBase::Ch
 	_costPointsLabel = getLabel("COST_POINTS_LBL");
 	_abilityModLabel = getLabel("LBL_ABILITY_MOD");
 
-	//_descLabel = getLabel("DESC_LBL");
 	_descListBox = getListBox("LB_DESC", true);
-	// TODO find out how this ListBox works
-	// 1. Try: get protoitem directly - fail
-	//_descProtoItem = getProtoItem("PROTOITEM", true);
-	//_descLabelProtoItem = getLabel("PROTOITEM", true);
-	// 2. Try: access protoitem - fail
-       	//_descText = _descListBox->selectItemByWidgetTag("PROTOITEM");
-	// 3. Try: add item with content (string)
-	//_descListBox->addItem(_charismaDesc);
-	//_descListBox->addItem("PROTOITEM");
-	//
-	//_descTextLabel->setWrapped(true);
+	if (!_descListBox)
+		throw Common::Exception("CharGenMenu: No description listbox");
+	_descListBox->setItemSelectionEnabled(false);
+	_descListBox->createItemWidgets(1);
+	//_descListBox->setPadding(3);
+	_descListBox->setAdjustHeight(true);
+	_descListBox->removeAllItems();
+	_descListBox->refreshItemWidgets();
+	// FIXME Strange behavior of wisdom/intelligence:
+	//       on hovering _label_ (not buttons):
+	//       wisdom does no update
+	//       intelligence switches back and forth between wisdom and intelligence
+	// TODO is the appearance allright?
 
 	_strengthLabel = getLabel("STR_LBL");
 	_dexterityLabel = getLabel("DEX_LBL");
@@ -147,6 +148,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(false);
 
 		updateCostModifier(_strength);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_strengthDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _strengthButton;
 		return;
 	}
@@ -164,6 +170,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(false);
 
 		updateCostModifier(_dexterity);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_dexterityDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _dexterityButton;
 		return;
 	}
@@ -181,6 +192,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(false);
 
 		updateCostModifier(_wisdom);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_constitutionDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _constitutionButton;
 		return;
 	}
@@ -198,6 +214,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(false);
 
 		updateCostModifier(_wisdom);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_wisdomDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _wisdomButton;
 		return;
 	}
@@ -215,6 +236,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(false);
 
 		updateCostModifier(_intelligence);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_intelligenceDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _intelligenceButton;
 		return;
 	}
@@ -232,6 +258,11 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 		_charismaLabel->setHighlight(true);
 
 		updateCostModifier(_charisma);
+
+		_descListBox->removeAllItems();
+		_descListBox->addItem(_charismaDesc);
+		_descListBox->refreshItemWidgets();
+
 		_hoveredButton = _charismaButton;
 		return;
 	}
@@ -826,7 +857,8 @@ void CharacterGenerationAbilitiesMenu::callbackActive(Widget &widget) {
 
 		disablePlusButtons();
 		enableMinusButtons();
-		// TODO reset ability description
+		_descListBox->removeAllItems();
+		_descListBox->refreshItemWidgets();
 
 		return;
 	}
