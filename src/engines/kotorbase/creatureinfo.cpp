@@ -207,55 +207,55 @@ void CreatureInfo::setAbilityScore(Ability ability, uint32_t score) {
 	}
 }
 
-int CreatureInfo::getSkillRank(Skill skill) const {
+int CreatureInfo::getSkillRank(KotORBase::Skill skill) const {
 	switch (skill) {
 		case kSkillComputerUse:
-			return _skills.computerUse;
+			return _skills.computerUse.rank;
 		case kSkillDemolitions:
-			return _skills.demolitions;
+			return _skills.demolitions.rank;
 		case kSkillStealth:
-			return _skills.stealth;
+			return _skills.stealth.rank;
 		case kSkillAwareness:
-			return _skills.awareness;
+			return _skills.awareness.rank;
 		case kSkillPersuade:
-			return _skills.persuade;
+			return _skills.persuade.rank;
 		case kSkillRepair:
-			return _skills.repair;
+			return _skills.repair.rank;
 		case kSkillSecurity:
-			return _skills.security;
+			return _skills.security.rank;
 		case kSkillTreatInjury:
-			return _skills.treatInjury;
+			return _skills.treatInjury.rank;
 		default:
 			warning("CreatureInfo::getSkillRank(): Invalid skill \"%d\"", skill);
 			return -1;
 	}
 }
 
-void CreatureInfo::setSkillRank(Skill skill, uint32_t rank) {
+void CreatureInfo::setSkillRank(KotORBase::Skill skill, uint32_t rank) {
 	switch (skill) {
 		case kSkillComputerUse:
-			_skills.computerUse = rank;
+			_skills.computerUse.rank = rank;
 			break;
 		case kSkillDemolitions:
-			_skills.demolitions = rank;
+			_skills.demolitions.rank = rank;
 			break;
 		case kSkillStealth:
-			_skills.stealth = rank;
+			_skills.stealth.rank = rank;
 			break;
 		case kSkillAwareness:
-			_skills.awareness = rank;
+			_skills.awareness.rank = rank;
 			break;
 		case kSkillPersuade:
-			_skills.persuade = rank;
+			_skills.persuade.rank = rank;
 			break;
 		case kSkillRepair:
-			_skills.repair = rank;
+			_skills.repair.rank = rank;
 			break;
 		case kSkillSecurity:
-			_skills.security = rank;
+			_skills.security.rank = rank;
 			break;
 		case kSkillTreatInjury:
-			_skills.treatInjury = rank;
+			_skills.treatInjury.rank = rank;
 			break;
 		default:
 			warning("CreatureInfo::setSkillRank(): Invalid skill \"%d\"", skill);
@@ -282,7 +282,7 @@ void CreatureInfo::loadSkills(const Aurora::GFF3Struct &gff) {
 		Aurora::GFF3List skillList = gff.getList("SkillList");
 		int index = 0;
 		for (const auto &skill : skillList) {
-			setSkillRank(Skill(index++), skill->getUint("Rank"));
+			setSkillRank(KotORBase::Skill(index++), skill->getUint("Rank"));
 		}
 	}
 }

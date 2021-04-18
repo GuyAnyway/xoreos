@@ -86,22 +86,42 @@ public:
 
 	// Skills
 
+	//struct Skills {
+	//	uint32_t computerUse { 0 };
+	//	uint32_t demolitions { 0 };
+	//	uint32_t stealth { 0 };
+	//	uint32_t awareness { 0 };
+	//	uint32_t persuade { 0 };
+	//	uint32_t repair { 0 };
+	//	uint32_t security { 0 };
+	//	uint32_t treatInjury { 0 };
+
+	//	Skills &operator=(const Skills &other);
+	//};
+	enum CrossClassSkill {
+		classSkill,
+		crossClassSkill,
+	};
+	struct Skill {
+		uint8_t rank;
+		enum CrossClassSkill crossClassSkill;
+	};
 	struct Skills {
-		uint32_t computerUse { 0 };
-		uint32_t demolitions { 0 };
-		uint32_t stealth { 0 };
-		uint32_t awareness { 0 };
-		uint32_t persuade { 0 };
-		uint32_t repair { 0 };
-		uint32_t security { 0 };
-		uint32_t treatInjury { 0 };
+		struct Skill computerUse { 0, crossClassSkill };
+		struct Skill demolitions { 0, crossClassSkill };
+		struct Skill stealth { 0, crossClassSkill };
+		struct Skill awareness { 0, crossClassSkill };
+		struct Skill persuade { 0, crossClassSkill };
+		struct Skill repair { 0, crossClassSkill };
+		struct Skill security { 0, crossClassSkill };
+		struct Skill treatInjury { 0, crossClassSkill };
 
 		Skills &operator=(const Skills &other);
 	};
 
-	int getSkillRank(Skill skill) const;
+	int getSkillRank(KotORBase::Skill skill) const;
 
-	void setSkillRank(Skill skill, uint32_t rank);
+	void setSkillRank(KotORBase::Skill skill, uint32_t rank);
 
 	// Inventory
 

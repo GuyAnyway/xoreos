@@ -69,6 +69,8 @@ protected:
 	Skin _skin;
 	uint8_t _face;
 	CreatureInfo::Abilities _abilities;
+	// TODO
+	//CreatureInfo::Skills _skills;
 
 	Common::UString _name;
 
