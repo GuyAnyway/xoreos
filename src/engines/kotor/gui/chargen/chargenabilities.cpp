@@ -74,11 +74,9 @@ CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotORBase::Ch
 	_descListBox->setAdjustHeight(true);
 	_descListBox->removeAllItems();
 	_descListBox->refreshItemWidgets();
-	// FIXME Strange behavior of wisdom/intelligence:
-	//       on hovering _label_ (not buttons):
-	//       wisdom does no update
-	//       intelligence switches back and forth between wisdom and intelligence
 	// TODO is the appearance allright?
+	// TODO stop highliting on hovering description (how?)
+	// TODO stop weird indentation of description text
 
 	_strengthLabel = getLabel("STR_LBL");
 	_dexterityLabel = getLabel("DEX_LBL");
@@ -134,6 +132,7 @@ CharacterGenerationAbilitiesMenu::CharacterGenerationAbilitiesMenu(KotORBase::Ch
 
 void CharacterGenerationAbilitiesMenu::callbackRun() {
 	// Check if a specific button is hovered and set modifier, cost and description
+	// TODO highlight label of the ability
 	if ((_strengthButton->isHovered()
 				|| _strengthLabel->isHovered()
 				|| _strengthPlusButton->isHovered()
@@ -155,8 +154,7 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 
 		_hoveredButton = _strengthButton;
 		return;
-	}
-	if ((_dexterityButton->isHovered()
+	} else if ((_dexterityButton->isHovered()
 				|| _dexterityLabel->isHovered()
 				|| _dexterityPlusButton->isHovered()
 				|| _dexterityMinusButton->isHovered()
@@ -177,8 +175,7 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 
 		_hoveredButton = _dexterityButton;
 		return;
-	}
-	if ((_constitutionButton->isHovered()
+	} else if ((_constitutionButton->isHovered()
 				|| _constitutionLabel->isHovered()
 				|| _constitutionPlusButton->isHovered()
 				|| _constitutionMinusButton->isHovered()
@@ -199,8 +196,7 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 
 		_hoveredButton = _constitutionButton;
 		return;
-	}
-	if ((_wisdomButton->isHovered()
+	} else if ((_wisdomButton->isHovered()
 				|| _wisdomLabel->isHovered()
 				|| _wisdomPlusButton->isHovered()
 				|| _wisdomMinusButton->isHovered()
@@ -221,8 +217,7 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 
 		_hoveredButton = _wisdomButton;
 		return;
-	}
-	if ((_intelligenceButton->isHovered()
+	} else if ((_intelligenceButton->isHovered()
 				|| _intelligenceLabel->isHovered()
 				|| _intelligencePlusButton->isHovered()
 				|| _intelligenceMinusButton->isHovered()
@@ -243,8 +238,7 @@ void CharacterGenerationAbilitiesMenu::callbackRun() {
 
 		_hoveredButton = _intelligenceButton;
 		return;
-	}
-	if ((_charismaButton->isHovered()
+	} else if ((_charismaButton->isHovered()
 				|| _charismaLabel->isHovered()
 				|| _charismaPlusButton->isHovered()
 				|| _charismaMinusButton->isHovered()
