@@ -31,6 +31,8 @@ namespace Engines {
 
 namespace KotOR {
 
+// TODO show discription for menu entries
+
 QuickOrCustomPanel::QuickOrCustomPanel(CharacterGenerationMenu *charGenMenu, Console *console) :
 		KotORBase::GUI(console),
 		_charGenMenu(charGenMenu) {
